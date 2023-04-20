@@ -1,6 +1,7 @@
 import torch
 import sklearn
 import numpy as np
+import wandb
 from sklearn.metrics import accuracy_score
 
 
@@ -66,7 +67,6 @@ def compute_metrics(pred):
     r'''
     validation을 위한 metrics function
     '''
-    
     labels = pred.label_ids
     preds = pred.predictions.argmax(-1)
     probs = pred.predictions
