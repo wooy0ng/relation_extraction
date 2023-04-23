@@ -6,6 +6,7 @@ logs/
 __pycache__/
 dataset/
 wandb/
+mlruns/
 
 _README.md
 .idea/

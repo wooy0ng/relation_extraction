@@ -91,7 +91,9 @@ def train(args) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--report_to', default='', help='input logger')
+    parser.add_argument('--report_to', default='mlflow', 
+        help=r'''input logger (wandb | mlflow | all) if not used, insert 'all'. '''
+    )
     
     args = parser.parse_args()
     
