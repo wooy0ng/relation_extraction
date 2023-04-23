@@ -42,7 +42,11 @@ def train(args) -> None:
     model_name = "klue/bert-base"
 
     # load dataset
-    train_dataset = RelationExtractionDataset(model_name=model_name, stage="train")
+    train_dataset = RelationExtractionDataset(
+        model_name=model_name, 
+        stage="train",
+        marker_type=args.marker_type
+    )
 
     # load model
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -91,8 +95,13 @@ def train(args) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--report_to', default='mlflow', 
+    parser.add_argument('--report_to', 
+        default='mlflow', 
         help=r'''input logger (wandb | mlflow | all) if not used, insert 'all'. '''
+    )
+    parser.add_argument('--marker_type', 
+        default='entity_marker_punct', 
+        help=r'''input marker type'''
     )
     
     args = parser.parse_args()
