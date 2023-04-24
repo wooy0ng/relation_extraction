@@ -6,15 +6,6 @@ from os import PathLike
 from typing import Union, List
 
 
-def label_to_num(label: np.ndarray) -> List:
-    num_label = []
-    with open("data/dict_label_to_num.pkl", 'rb') as f:
-        dict_label_to_num = pkl.load(f)
-    for v in label:
-        num_label.append(dict_label_to_num[v])
-    return num_label
-
-
 def preprocessing_dataset(df: pd.DataFrame) -> pd.DataFrame:
     r"""
     처음 불러온 csv 파일을 원하는 형태의 DataFrame으로 변경시켜준다.
@@ -43,3 +34,23 @@ def load_data(dataset_dir: Union[str, PathLike]) -> pd.DataFrame:
     dataset = preprocessing_dataset(df)
     
     return dataset
+
+
+def num_to_label(label: np.ndarray) -> List:
+    origin_label = []
+    with open('data/dict_num_to_label.pkl', 'rb') as f:
+        dict_num_to_label = pkl.load(f)
+    for v in label:
+        origin_label.append(dict_num_to_label[v])
+
+    return origin_label
+
+
+
+def label_to_num(label: np.ndarray) -> List:
+    num_label = []
+    with open("data/dict_label_to_num.pkl", 'rb') as f:
+        dict_label_to_num = pkl.load(f)
+    for v in label:
+        num_label.append(dict_label_to_num[v])
+    return num_label

@@ -1,6 +1,7 @@
 import torch
 import wandb
 import argparse
+import mlflow
 from transformers import (
     AutoConfig,
     AutoModelForSequenceClassification,
@@ -20,7 +21,7 @@ TODO: refactoring
 """
 
 
-def train(args) -> None:
+def train(args: argparse.Namespace) -> None:
     def wandb_init(project="relation extraction", name="name"):
         with open(".wandb_key", "r+") as f:
             key = f.read()
@@ -42,7 +43,7 @@ def train(args) -> None:
     model_name = "klue/bert-base"
 
     # load dataset
-    train_dataset = RelationExtractionDataset(
+    train_datamodule = RelationExtractionDataset(
         model_name=model_name, 
         stage="train",
         marker_type=args.marker_type
@@ -81,20 +82,26 @@ def train(args) -> None:
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=train_dataset,
+        train_dataset=train_datamodule,
+        eval_dataset=train_datamodule,
         compute_metrics=compute_metrics,
     )
-
+    
     # train
     trainer.train()
-    model.save_pretrained("./best_model")
+    
+    if args.report_to == 'mlflow':
+        time_serial = datetime.now(timezone(timedelta(hours=9))).strftime("%y%m%d-%h%M%S")
+        model_path = f'models/run_{time_serial}.pt'
+        mlflow.pytorch.log_model(model, model_path)
+    else:
+        model.save_pretrained("./best_model")
 
     return
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser([])
     parser.add_argument('--report_to', 
         default='mlflow', 
         help=r'''input logger (wandb | mlflow | all) if not used, insert 'all'. '''
