@@ -12,14 +12,6 @@ from datetime import datetime, timezone, timedelta
 from data.dataset import RelationExtractionDataset
 from model.metrics import compute_metrics
 
-"""
-TODO: refactoring
-    TODO: make compute_metrics() function
-    TODO: do training
-        TODO: studying huggingface architecture (o)
-        TODO: using wandb (o)
-"""
-
 
 def train(args: argparse.Namespace) -> None:
     def wandb_init(project="relation extraction", name="name"):
