@@ -1,9 +1,12 @@
+import os
 import pandas as pd
 import numpy as np
 import pickle as pkl
 
 from os import PathLike
 from typing import Union, List
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 def preprocessing_dataset(df: pd.DataFrame) -> pd.DataFrame:
@@ -38,7 +41,7 @@ def load_data(dataset_dir: Union[str, PathLike]) -> pd.DataFrame:
 
 def num_to_label(label: np.ndarray) -> List:
     origin_label = []
-    with open('data/dict_num_to_label.pkl', 'rb') as f:
+    with open(f'{parent_dir}/data/dict_num_to_label.pkl', 'rb') as f:
         dict_num_to_label = pkl.load(f)
     for v in label:
         origin_label.append(dict_num_to_label[v])
@@ -49,7 +52,7 @@ def num_to_label(label: np.ndarray) -> List:
 
 def label_to_num(label: np.ndarray) -> List:
     num_label = []
-    with open("data/dict_label_to_num.pkl", 'rb') as f:
+    with open(f"{parent_dir}/data/dict_label_to_num.pkl", 'rb') as f:
         dict_label_to_num = pkl.load(f)
     for v in label:
         num_label.append(dict_label_to_num[v])

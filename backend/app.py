@@ -9,7 +9,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 # import ..code.inference
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-child_dir = os.path.join(parent_dir, 'code', )
+child_dir = os.path.join(parent_dir, 'code')
 
 sys.path.append(parent_dir)
 sys.path.append(child_dir)
@@ -44,9 +44,13 @@ class UserInput(BaseModel):
 
 @app.post('/user_input', description="get user input from webpage")
 def get_user_input(req: UserInput):
-    sentence: str = req.sentence
-    subj: str = req.subject
-    obj: str = req.object
+    args = {
+        'sentence': req.sentence,
+        'subject_entity': req.subject,
+        'object_entity': req.object
+    }
+    pred = inference_one(args)
+    
     
     return
 
