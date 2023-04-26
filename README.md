@@ -31,7 +31,7 @@
 
 ## ✓ 모델 구조
 
-<img width="500" alt="model" src="https://user-images.githubusercontent.com/37149278/234616026-a8f997da-742a-469c-b01a-43b7d5b73bdf.png">
+<img width="500" alt="model" src="https://user-images.githubusercontent.com/37149278/234621690-e1e5ed79-b426-4edd-8b5f-413dc901dabd.png">
 
 <br><br>
 
