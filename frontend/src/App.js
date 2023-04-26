@@ -10,6 +10,7 @@ function App() {
   const [userSentence, setUserSentence] = useState("");
   const [userSubject, setUserSubject] = useState("");
   const [userObject, setUserObject] = useState("");
+  const [serverInference, setServerInference] = useState("");
 
   const serverUrl = "http://127.0.0.1:8080/";
 
@@ -25,8 +26,8 @@ function App() {
     fetch(url, {
       method: "POST", headers: {'Content-Type': "application/json"}, body: sendData}
     ).then(
-      (res) => console.log(res.json())
-    )
+      (res) => res.json()
+    ).then((res) => setServerInference((prev) => res.inference))
   }
 
   const userSentenceChange = (event) => {
@@ -130,7 +131,7 @@ function App() {
                     </div>
                   </div>
                   <div className='text-start mt-3'>
-                    {(userSentence.length < 1 || userSubject.length < 1 || userObject.length < 1) ? (
+                    {(userSentence.length < 1 || userSubject.length < 1 || userObject.length < 1) || (serverInference.length > 0) ? (
                       <label
                         className="file btn btn-md btn-light btn-primary fw-bold border-white bg-white mt-3 disabled"
                       >전송하기
@@ -143,8 +144,16 @@ function App() {
                     </label>
                     )}
                   </div>
+                  {serverInference.length > 0 ? (
+                    <div className='text-start mt-4'>
+                      <p>문장 내에서 subject와 object간의 관계는 <font color='tomato'>{serverInference}</font>입니다.</p>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               </div>
+              
             )}
           </div>
         </main>
