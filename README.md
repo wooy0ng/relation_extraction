@@ -24,13 +24,14 @@
 <br><br><br>
 
 ## ✓ 활용 장비 및 환경
-GPU : NVIDIA A100  
-OS : Ubuntu 18.04 LTS
+- GPU : NVIDIA A100  
+- OS : Ubuntu 18.04 LTS
 
 <br><br>
 
 ## ✓ 모델 구조
 
+<img width="500" alt="model" src="https://user-images.githubusercontent.com/37149278/234616026-a8f997da-742a-469c-b01a-43b7d5b73bdf.png">
 
 <br><br>
 
@@ -38,22 +39,24 @@ OS : Ubuntu 18.04 LTS
 
 - 데이터 & 모델 학습 파이프라인
 
+<img width="800" alt="main" src="https://user-images.githubusercontent.com/37149278/234615503-40805737-ff58-48e2-a601-5fffa5ebf4e6.png">
 
 <br>
 
 - inference
 
-
+<img width="800" alt="main" src="https://user-images.githubusercontent.com/37149278/234616248-0ebc140f-c880-4a9f-9f93-10e616c5d061.png">
 
 
 <br><br>
 
 ## ✓ 사용 기술 스택
 
+<img width="600" alt="main" src="https://user-images.githubusercontent.com/37149278/234616382-fbab4ba5-1782-4919-aea0-4929d1e07dc9.png">
 
 
 <br><br>
 
-자세한 정보 및 인사이트는 <a href="https://blog.naver.com/wooy0ng">wooy0ng의 기술 블로그</a>를 참고해주세요! 
+자세한 정보 및 인사이트는 <a href="https://blog.naver.com/wooy0ng/222947224206">블로그</a>를 참고해주세요! 
 
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fwooy0ng%2Fhit-counter&count_bg=%23ADC83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
