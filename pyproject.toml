@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "relation-extraction"
+version = "0.1.0"
+description = ""
+authors = ["wooy0ng <yygg9800@naver.com>"]
+readme = "README.md"
+packages = [{include = "relation_extraction"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "^2.0.0"
+pandas = "^2.0.0"
+scikit-learn = "^1.2.2"
+transformers = "^4.28.1"
+wandb = "^0.14.2"
+mlflow = "^2.3.0"
+fastapi = {extras = ["all"], version = "^0.95.1"}
+omegaconf = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

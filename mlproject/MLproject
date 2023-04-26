@@ -1,0 +1,5 @@
+name: relation_extraction
+
+entry_points:
+    main:
+        command: "python train.py"
