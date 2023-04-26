@@ -1,6 +1,18 @@
 <div align="center">
  <h1> 문장 내 개체간 관계 추출 </h1>
 
+ <table>
+    <tr>
+      <td align="center">메인</td>
+      <td align="center">게임 로비</td>
+    </tr>
+    <tr>
+      <td align="center"><img width="500" alt="main" src="https://user-images.githubusercontent.com/37149278/234532843-276c7e19-8cb4-4952-bb7f-683361db150d.png"></td>
+      <td align="center"><img width="500" alt="task" src="https://user-images.githubusercontent.com/37149278/234532952-2070679e-b0eb-47fc-b875-9f5029b07439.png"></td>
+    </tr>
+    
+ </table>
+
  <br>
  관계 추출은 문장의 단어에 대해 속성과 관계를 예측하여  <br />
  <b>지식 그래프 구축</b>에 있어 핵심적인 역할을 하는 단계입니다. <br>
@@ -12,7 +24,8 @@
 <br><br><br>
 
 ## ✓ 활용 장비 및 환경
-
+GPU : NVIDIA A100  
+OS : Ubuntu 18.04 LTS
 
 <br><br>
 
