@@ -8,6 +8,7 @@ dataset/
 wandb/
 code/
 mlruns/
+results/
 
 _README.md
 .idea/
