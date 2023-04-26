@@ -1,14 +1,18 @@
 import torch
+import os
 import argparse
 import numpy as np
 import pandas as pd
 from transformers import AutoModelForSequenceClassification
-from data.dataset import RelationExtractionDataset
-from data.utils import num_to_label
+from typing import Union, DefaultDict
+from .data.dataset import RelationExtractionDataset
+from .data.utils import num_to_label
+from omegaconf import OmegaConf
 
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 @torch.no_grad()
-def inference_one(args: argparse.Namespace) -> None:
+def inference_one(args: Union[argparse.Namespace, DefaultDict]) -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     inference_datamodule = RelationExtractionDataset(
@@ -16,7 +20,9 @@ def inference_one(args: argparse.Namespace) -> None:
         stage="inference",
         marker_type="entity_marker_punct",
     )
-
+    if type(args) == dict:
+        args = OmegaConf.create(args)
+    
     df = pd.DataFrame({
         "sentence": [args.sentence],
         "subject_entity": [args.subject_entity],
@@ -25,17 +31,16 @@ def inference_one(args: argparse.Namespace) -> None:
     tokenized_dataset = inference_datamodule.tokenizing(df).to(device)
 
     model = AutoModelForSequenceClassification.from_pretrained(
-        pretrained_model_name_or_path="./results/checkpoint-8118"
+        pretrained_model_name_or_path=f"{parent_dir}/mlproject/results/checkpoint-8118"
     ).to(device)
     model.eval()
 
     output = model(**tokenized_dataset)
     logits = output["logits"].detach().cpu().numpy()
     pred = np.argmax(logits, axis=-1)
-    pred = num_to_label(pred)
+    pred = num_to_label(pred)[0]
 
-    print("prediction : ", *pred)
-    return
+    return pred
 
 
 if __name__ == "__main__":
