@@ -25,18 +25,18 @@ function App() {
         <div className='cover-container d-flex w-100 h-100 p-3 mx-auto flex-column'>
           <header className='mb-auto'>
             <div>
-              <nav class="nav nav-masthead justify-content-center py-4">
+              <nav className="nav nav-masthead justify-content-center py-4">
                 {barList[0] ? (
-                  <a class="nav-link fw-bold py-1 px-0 active" href="#!">Intro</a>
+                  <a className="nav-link fw-bold py-1 px-0 active" href="#!">Intro</a>
                 ) : (
-                  <a class="nav-link fw-bold py-1 px-0" href="#!" onClick={() => {
+                  <a className="nav-link fw-bold py-1 px-0" href="#!" onClick={() => {
                     setBarList((prev) => [true, false])
                   }}>Intro</a>
                 )}
                 {barList[1] ? (
-                  <a class="nav-link fw-bold py-1 px-0 active" href="#!">Task</a>
+                  <a className="nav-link fw-bold py-1 px-0 active" href="#!">Task</a>
                 ) : (
-                  <a class="nav-link fw-bold py-1 px-0" href="#!" onClick={() => {
+                  <a className="nav-link fw-bold py-1 px-0" href="#!" onClick={() => {
                     setBarList((prev) => [false, true])
                   }}>Task</a>
                 )}
@@ -45,7 +45,7 @@ function App() {
           </header>
         </div>
 
-        <main class="container-fluid px-3">
+        <main className="container-fluid px-3">
           <div>
             {barList[0] ? (
               <div className="d-flex justify-content-left align-items-center p-5" style={{ minHeight: "85vh", marginLeft: "50px" }}>
