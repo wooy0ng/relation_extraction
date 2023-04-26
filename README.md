@@ -4,7 +4,7 @@
  <table>
     <tr>
       <td align="center">메인</td>
-      <td align="center">게임 로비</td>
+      <td align="center">테스크</td>
     </tr>
     <tr>
       <td align="center"><img width="500" alt="main" src="https://user-images.githubusercontent.com/37149278/234532843-276c7e19-8cb4-4952-bb7f-683361db150d.png"></td>
