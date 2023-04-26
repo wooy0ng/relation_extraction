@@ -3,6 +3,7 @@ import os
 import uvicorn
 
 from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
@@ -50,9 +51,9 @@ def get_user_input(req: UserInput):
         'object_entity': req.object
     }
     pred = inference_one(args)
+    json_res = jsonable_encoder({'inference': pred})
     
-    
-    return
+    return JSONResponse(content=json_res)
 
 
 if __name__ == '__main__':
