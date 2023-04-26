@@ -2,11 +2,32 @@ import { useState } from 'react';
 import './css/App.css';
 import './css/cover.css';
 
+
+
+
 function App() {
   let [barList, setBarList] = useState([true, false]);
   const [userSentence, setUserSentence] = useState("");
   const [userSubject, setUserSubject] = useState("");
   const [userObject, setUserObject] = useState("");
+
+  const serverUrl = "http://127.0.0.1:8080/";
+
+  const onClickSendData = (user_sentence, user_subject, user_object) => {
+    const url = serverUrl + 'user_input';
+    const sendData = JSON.stringify({
+      sentence: user_sentence,
+      subject: user_subject,
+      object: user_object
+    });
+    
+    console.log(sendData);
+    fetch(url, {
+      method: "POST", headers: {'Content-Type': "application/json"}, body: sendData}
+    ).then(
+      (res) => console.log(res.json())
+    )
+  }
 
   const userSentenceChange = (event) => {
     setUserSentence(event.target.value);
@@ -112,17 +133,12 @@ function App() {
                     {(userSentence.length < 1 || userSubject.length < 1 || userObject.length < 1) ? (
                       <label
                         className="file btn btn-md btn-light btn-primary fw-bold border-white bg-white mt-3 disabled"
-                        onClick={() => {
-                          
-                        }}
                       >전송하기
                       </label>
                     ): (
                       <label
                       className="file btn btn-md btn-light btn-primary fw-bold border-white bg-white mt-3"
-                      onClick={() => {
-                        
-                      }}
+                      onClick={(event) => {onClickSendData(userSentence, userSubject, userObject)}}
                     >전송하기
                     </label>
                     )}
